@@ -12,20 +12,38 @@ public class Tests
     }
 
     [Test]
-    public void TestAddEquals()
+    public void TestAdd()
     {
         Assert.That(_uut.Add(3, 3), Is.EqualTo(6));
     }
 
     [Test]
-    public void TestAddGreaterThan()
+    public void TestAddDecimal()
     {
-        Assert.That(_uut.Add(2,4),Is.GreaterThan(5));
+        Assert.That(_uut.Add(1.25,4.5),Is.EqualTo(5.75));
     }
 
     [Test]
-    public void TestSubtractEquals()
+    public void TestAddNegative()
     {
-        Assert.That(_uut.Subtract(3, 3), Is.EqualTo(0));
+        Assert.That(_uut.Add(-5, 4), Is.EqualTo(-1));
+    }
+
+    [Test]
+    public void TestSubtract()
+    {
+        Assert.That(_uut.Subtract(4, 3), Is.EqualTo(1));
+    }
+
+    [Test]
+    public void TestSubtractDecimal()
+    {
+        Assert.That(_uut.Subtract(4.75, 3.5), Is.EqualTo(1.25));
+    }
+
+    [Test]
+    public void TestSubtractNegative()
+    {
+        Assert.That(_uut.Subtract(4, -3), Is.EqualTo(7));
     }
 }
