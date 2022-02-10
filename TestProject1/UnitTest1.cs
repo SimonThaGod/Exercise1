@@ -20,6 +20,6 @@ public class Tests
     [Test]
     public void Test2()
     {
-        Assert.That(_uut.Subtract(3, 6), Is.EqualTo(0));
+        Assert.That(_uut.Subtract(3, 3), Is.EqualTo(0));
     }
 }
