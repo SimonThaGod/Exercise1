@@ -8,7 +8,25 @@ public class Calculator
 
     public double Multiply(double one, double two) => one * two;
 
-    public double Divide(double one, double two) => one / two;
+    public double Divide(double one, double two)
+    {
+        if (two == 0) throw new DivideByZeroException("You can't divide by zero!");
+        
+        return one / two;
+    }
     
     public double Power(double num, double exp) => Math.Pow(num, exp);
+}
+
+public class DivideByZeroException : Exception
+{
+    public DivideByZeroException()
+    {
+        
+    }
+
+    public DivideByZeroException(string message) : base(message)
+    {
+        
+    }
 }
