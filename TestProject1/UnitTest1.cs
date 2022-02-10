@@ -12,13 +12,19 @@ public class Tests
     }
 
     [Test]
-    public void TestAdd()
+    public void TestAddEquals()
     {
         Assert.That(_uut.Add(3, 3), Is.EqualTo(6));
     }
 
     [Test]
-    public void TestSubtract()
+    public void TestAddGreaterThan()
+    {
+        Assert.That(_uut.Add(2,4),Is.GreaterThan(5));
+    }
+
+    [Test]
+    public void TestSubtractEquals()
     {
         Assert.That(_uut.Subtract(3, 3), Is.EqualTo(0));
     }
