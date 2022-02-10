@@ -12,13 +12,13 @@ public class Tests
     }
 
     [Test]
-    public void Test1()
+    public void TestAdd()
     {
         Assert.That(_uut.Add(3, 3), Is.EqualTo(6));
     }
 
     [Test]
-    public void Test2()
+    public void TestSubtract()
     {
         Assert.That(_uut.Subtract(3, 3), Is.EqualTo(0));
     }
