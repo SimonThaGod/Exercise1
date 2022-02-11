@@ -2,16 +2,17 @@
 
 public class Calculator
 {
+    private double _accumulator = 0;
     public double Accumulator
     {
-        get { return Accumulator; }
+        get { return _accumulator; }
         private set
         {
-            if (value > Double.MaxValue || value < Double.MinValue)
-                throw new ArgumentOutOfRangeException(
-                    $"{nameof(value)} must not be lower than {Double.MinValue} and {Double.MaxValue}.");
+            if (value >= Double.MaxValue || value <= Double.MinValue)
+                throw new AccumulatorOutOfRangeException(
+                    $"{nameof(value)} must not be lower than {Double.MinValue} and greater than {Double.MaxValue}.");
 
-            Accumulator = value;
+            _accumulator = value;
         }
     }
 

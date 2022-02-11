@@ -15,5 +15,12 @@ Console.WriteLine($"{one} / {two} = {calc.Divide(one, two)}");
 
 calc.Add(10);
 Console.WriteLine(calc.Accumulator);
-calc.Divide(0);
+
+
+Console.WriteLine(Double.MaxValue);
+Console.WriteLine(Double.MaxValue+1);
+
+calc.Add(Double.MaxValue + 1);
+calc.Subtract(Double.MaxValue);
 Console.WriteLine(calc.Accumulator);
+Console.WriteLine(calc.Accumulator.GetType());

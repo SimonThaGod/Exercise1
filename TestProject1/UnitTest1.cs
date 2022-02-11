@@ -1,6 +1,7 @@
 using System;
 using Calculator;
 using NUnit.Framework;
+using DivideByZeroException = Calculator.DivideByZeroException;
 
 namespace TestProject1;
 
@@ -70,6 +71,14 @@ public class Tests
         Assert.That(_uut.Multiply(-2, -4), Is.EqualTo(8));
     }
 
+    /* --- Division --- */
+
+    [Test]
+    public void Divide_Divisor0_DivideByZeroException()
+    {
+        Assert.Throws<DivideByZeroException>(() => _uut.Divide(0));
+    }
+
     /* --- Power --- */
     [Test]
     public void Power_2by3_8()
@@ -119,12 +128,14 @@ public class Tests
     public void AccumulatorAdd_AccBy3_3()
     {
         Assert.That(_uut.Add(3), Is.EqualTo(3));
+        Assert.That(_uut.Accumulator, Is.EqualTo(3));
     }
 
     [Test]
     public void AccumulatorAdd_AccByNegative3_Negative3()
     {
         Assert.That(_uut.Add(-3), Is.EqualTo(-3));
+        Assert.That(_uut.Accumulator, Is.EqualTo(-3));
     }
 
     [Test]
@@ -135,16 +146,62 @@ public class Tests
 
         // Act and Assert
         Assert.That(_uut.Add(3), Is.EqualTo(8));
+        Assert.That(_uut.Accumulator, Is.EqualTo(8));
     }
 
     [Test]
-    public void AccumulatorAdd_AccByMaxDoubleValue_Exception()
+    public void AccumulatorAdd_AccByMaxDoubleValue_AccumulatorOutOfRangeException()
     {
         // Arrange
-        //_uut.Add(1);
+        _uut.Add(1);
 
         // Act and Assert
-        Assert.That(_uut.Add(Double.MaxValue - 1), Throws.Exception.TypeOf<AccumulatorOutOfRangeException>());
+        Assert.Throws<AccumulatorOutOfRangeException>(() => _uut.Add(Double.MaxValue));
+        Assert.That(_uut.Accumulator, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void AccumulatorAdd_Acc4ByNegative5_Negative1()
+    {
+        // Arrange
+        _uut.Add(4);
+
+        // Act and Assert
+        Assert.That(_uut.Subtract(5), Is.EqualTo(-1));
+    }
+
+    /* --- Subtract --- */
+    [Test]
+    public void AccumulatorSubtract_AccByMinDoubleValue_AccumulatorOutOfRangeException()
+    {
+        // Arrange
+        _uut.Subtract(1);
+
+        // Act and Assert
+        Assert.Throws<AccumulatorOutOfRangeException>(() => _uut.Subtract(Double.MinValue));
+        Assert.That(_uut.Accumulator, Is.EqualTo(-1));
+    }
+
+    [Test]
+    public void AccumulatorSubtract_Acc4By1_3()
+    {
+        // Arrange
+        _uut.Add(4);
+
+        // Act and Assert
+        Assert.That(_uut.Subtract(1), Is.EqualTo(3));
+        Assert.That(_uut.Accumulator, Is.EqualTo(3));
+    }
+
+    [Test]
+    public void AccumulatorSubtract_AccNegative1ByNegative1_2()
+    {
+        // Arrange
+        _uut.Subtract(1);
+
+        // Act and Assert
+        Assert.That(_uut.Subtract(1), Is.EqualTo(2));
+        Assert.That(_uut.Accumulator, Is.EqualTo(2));
     }
 
 }
