@@ -21,6 +21,14 @@ public class Calculator
 
     public void Clear() => Accumulator = 0;
 
+    public double Add(double one) => Accumulator += one;
+
+    public double Subtract(double one) => Accumulator -= one;
+
+    public double Multiply(double one) => Accumulator *= one;
+
+    public double Power(double one) => Accumulator = Math.Pow(Accumulator, one);
+
 
 }
 
