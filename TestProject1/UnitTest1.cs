@@ -11,6 +11,7 @@ public class Tests
         _uut = new Calculator.Calculator();
     }
 
+    /* --- Add --- */
     [Test]
     public void Add_3by3_6()
     {
@@ -29,6 +30,7 @@ public class Tests
         Assert.That(_uut.Add(-5, 4), Is.EqualTo(-1));
     }
 
+    /* --- Subtract --- */
     [Test]
     public void Subtract_4by3_1()
     {
@@ -47,6 +49,7 @@ public class Tests
         Assert.That(_uut.Subtract(4, -3), Is.EqualTo(7));
     }
 
+    /* --- Multiply --- */
     [Test]
     public void Multiply_2by3_6()
     {
@@ -64,6 +67,7 @@ public class Tests
         Assert.That(_uut.Multiply(-2, -4), Is.EqualTo(8));
     }
 
+    /* --- Power --- */
     [Test]
     public void Power_2by3_8()
     {
@@ -87,4 +91,13 @@ public class Tests
     {
         Assert.That(_uut.Power(2, 0), Is.EqualTo(1));
     }
+
+    /* Accumulator */
+
+    [Test]
+    public void Accumulator_Initialized_0()
+    {
+        Assert.That(_uut.Accumulator, Is.EqualTo(0));
+    }
+
 }
