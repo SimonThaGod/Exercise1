@@ -1,3 +1,5 @@
+using System;
+using Calculator;
 using NUnit.Framework;
 
 namespace TestProject1;
@@ -98,6 +100,50 @@ public class Tests
     public void Accumulator_Initialized_0()
     {
         Assert.That(_uut.Accumulator, Is.EqualTo(0));
+    }
+
+    [Test]
+    public void Clear_AccumulatorIs3_0()
+    {
+        // Arrange
+        _uut.Add(3);
+
+        // Act
+        _uut.Clear();
+        Assert.That(_uut.Accumulator, Is.EqualTo(0));
+    }
+
+    /* Accumulator - Add */
+    [Test]
+    public void AccumulatorAdd_AccBy3_3()
+    {
+        Assert.That(_uut.Add(3), Is.EqualTo(3));
+    }
+
+    [Test]
+    public void AccumulatorAdd_AccByNegative3_Negative3()
+    {
+        Assert.That(_uut.Add(-3), Is.EqualTo(-3));
+    }
+
+    [Test]
+    public void AccumulatorAdd_Acc5By3_8()
+    {
+        // Arrange
+        _uut.Add(5);
+
+        // Act and Assert
+        Assert.That(_uut.Add(3), Is.EqualTo(8));
+    }
+
+    [Test]
+    public void AccumulatorAdd_AccByMaxDoubleValue_Exception()
+    {
+        // Arrange
+        //_uut.Add(1);
+
+        // Act and Assert
+        Assert.That(_uut.Add(Double.MaxValue - 1), Throws.Exception.TypeOf<AccumulatorOutOfRangeException>());
     }
 
 }

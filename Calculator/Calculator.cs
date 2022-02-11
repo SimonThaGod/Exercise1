@@ -2,7 +2,18 @@
 
 public class Calculator
 {
-    public double Accumulator { get; private set; } = 0;
+    public double Accumulator
+    {
+        get { return Accumulator; }
+        private set
+        {
+            if (value > Double.MaxValue || value < Double.MinValue)
+                throw new ArgumentOutOfRangeException(
+                    $"{nameof(value)} must not be lower than {Double.MinValue} and {Double.MaxValue}.");
+
+            Accumulator = value;
+        }
+    }
 
     public double Add(double one, double two) => one + two;
 
@@ -28,8 +39,6 @@ public class Calculator
     public double Multiply(double one) => Accumulator *= one;
 
     public double Power(double one) => Accumulator = Math.Pow(Accumulator, one);
-
-
 }
 
 public class DivideByZeroException : Exception
@@ -42,5 +51,18 @@ public class DivideByZeroException : Exception
     public DivideByZeroException(string message) : base(message)
     {
         
+    }
+}
+
+public class AccumulatorOutOfRangeException : Exception
+{
+    public AccumulatorOutOfRangeException()
+    {
+
+    }
+
+    public AccumulatorOutOfRangeException(string message) : base(message)
+    {
+
     }
 }
