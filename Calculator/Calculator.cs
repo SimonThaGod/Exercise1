@@ -19,6 +19,9 @@ public class Calculator
         return one / two;
     }
 
+    public void Clear() => Accumulator = 0;
+
+
 }
 
 public class DivideByZeroException : Exception
