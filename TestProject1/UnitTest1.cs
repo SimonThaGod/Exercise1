@@ -204,4 +204,35 @@ public class Tests
         Assert.That(_uut.Accumulator, Is.EqualTo(2));
     }
 
+    // Multiplikation
+
+    [Test]
+    public void AccumulatorMultiplication_AccNegative2ByNegative2_4()
+    {
+        // Arrange
+        _uut.Add(-2);
+
+        // Act and Assert
+        Assert.That(_uut.Multiply(-2), Is.EqualTo(4));
+    }
+
+    [Test]
+    public void AccumulatorMultiplication_Acc2By2_4()
+    {
+        // Arrange
+        _uut.Add(2);
+
+        // Act and Assert
+        Assert.That(_uut.Multiply(2), Is.EqualTo(4));
+    }
+
+    [Test]
+    public void AccumulatorMultiplication_Acc11by0_0()
+    {
+        // Arrange
+        _uut.Add(11);
+
+        // Act and Assert
+        Assert.That(_uut.Multiply(0), Is.EqualTo(0));
+    }
 }
