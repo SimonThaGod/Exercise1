@@ -104,6 +104,13 @@ public class Tests
         Assert.That(_uut.Power(2, 0), Is.EqualTo(1));
     }
 
+    [Test]
+    public void Power_NegativePowerByNonIntegerExponent_NegativePowerByNonIntegerException()
+    {
+        // Act and Assert
+        Assert.Throws<NegativePowerByNonIntegerException>(() => _uut.Power(-1, 0.7));
+    }
+
     /* Accumulator */
 
     [Test]
@@ -235,4 +242,17 @@ public class Tests
         // Act and Assert
         Assert.That(_uut.Multiply(0), Is.EqualTo(0));
     }
+
+    // Power
+    [Test]
+    public void AccumulatorPower_NegativePowerByNonIntegerExponent_NegativePowerByNonIntegerException()
+    {
+        // Arrange
+        _uut.Subtract(1);
+
+        // Act and Assert
+        Assert.Throws<NegativePowerByNonIntegerException>(() => _uut.Power(0.7));
+        Assert.That(_uut.Accumulator, Is.EqualTo(-1));
+    }
+
 }
