@@ -2,6 +2,8 @@
 
 public class Calculator
 {
+    public double Accumulator { get; private set; } = 0;
+
     public double Add(double one, double two) => one + two;
 
     public double Subtract(double one, double two) => one - two;
@@ -16,8 +18,7 @@ public class Calculator
         
         return one / two;
     }
-    
-    
+
 }
 
 public class DivideByZeroException : Exception
