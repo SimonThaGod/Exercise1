@@ -28,8 +28,9 @@ public class Calculator
     public double Multiply(double one) => Accumulator *= one;
 
     public double Power(double one) => Accumulator = Math.Pow(Accumulator, one);
-
-
+    
+    public double Divide(double divisor) => 
+        Accumulator = divisor != 0 ? Accumulator / divisor : throw new DivideByZeroException("You can't divide by zero!");
 }
 
 public class DivideByZeroException : Exception
