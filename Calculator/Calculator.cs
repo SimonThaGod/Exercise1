@@ -22,11 +22,16 @@ public class Calculator
 
     public double Multiply(double one, double two) => one * two;
 
-    public double Power(double num, double exp) => Math.Pow(num, exp);
+    public double Power(double num, double exp)
+    {
+        if (num < 0 && exp != Math.Round(exp))
+            throw new NegativePowerByNonIntegerException();
+        return Math.Pow(num, exp);
+    }
 
     public double Divide(double one, double two)
     {
-        if (two == 0) throw new DivideByZeroException("You can't divide by zero!");
+        if (two == 0) throw new DivideByZeroException();
         
         return one / two;
     }
@@ -39,20 +44,22 @@ public class Calculator
 
     public double Multiply(double one) => Accumulator *= one;
 
-    public double Power(double one) => Accumulator = Math.Pow(Accumulator, one);
-    
-    public double Divide(double divisor) => 
-        Accumulator = divisor != 0 ? Accumulator / divisor : throw new DivideByZeroException("You can't divide by zero!");
+    public double Power(double one)
+    {
+        if (Accumulator < 0 && one != Math.Round(one))
+            throw new NegativePowerByNonIntegerException();
+
+        Accumulator = Math.Pow(Accumulator, one);
+        return Accumulator;
+    }
+
+public double Divide(double divisor) => 
+        Accumulator = divisor != 0 ? Accumulator / divisor : throw new DivideByZeroException();
 }
 
 public class DivideByZeroException : Exception
 {
-    public DivideByZeroException()
-    {
-        
-    }
-
-    public DivideByZeroException(string message) : base(message)
+    public DivideByZeroException(string message = "You can't divide by zero!") : base(message)
     {
         
     }
@@ -60,12 +67,15 @@ public class DivideByZeroException : Exception
 
 public class AccumulatorOutOfRangeException : Exception
 {
-    public AccumulatorOutOfRangeException()
+    public AccumulatorOutOfRangeException(string message) : base(message)
     {
 
     }
+}
 
-    public AccumulatorOutOfRangeException(string message) : base(message)
+public class NegativePowerByNonIntegerException : Exception
+{
+    public NegativePowerByNonIntegerException(string message = "Can't power negative with non-integer exponent") : base(message)
     {
 
     }
