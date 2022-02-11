@@ -5,6 +5,7 @@ namespace TestProject1;
 public class Tests
 {
     private Calculator.Calculator _uut;
+
     [SetUp]
     public void Setup()
     {
