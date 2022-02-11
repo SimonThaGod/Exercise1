@@ -197,10 +197,10 @@ public class Tests
     public void AccumulatorSubtract_AccNegative1ByNegative1_2()
     {
         // Arrange
-        _uut.Subtract(1);
+        _uut.Subtract(-1);
 
         // Act and Assert
-        Assert.That(_uut.Subtract(1), Is.EqualTo(2));
+        Assert.That(_uut.Subtract(-1), Is.EqualTo(2));
         Assert.That(_uut.Accumulator, Is.EqualTo(2));
     }
 
